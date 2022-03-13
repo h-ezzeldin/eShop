@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ezz.eshop.models.Product" />
+
+        <import type="com.ezz.eshop.models.Rating" />
+
+        <variable
+            name="grid_product"
+            type="Product" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="Product Image"
+                app:layout_constraintDimensionRatio="1:1"
+                android:transitionName="image_trans"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/to_cart_button"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/purple_200"
+                android:paddingStart="9dp"
+                android:paddingEnd="9dp"
+                app:icon="@drawable/ic_round_add_shopping_cart_24"
+                app:iconTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/product_image"
+                app:layout_constraintEnd_toEndOf="@id/product_image"
+                app:layout_constraintTop_toBottomOf="@id/product_image" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/product_image">
+
+
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{``+grid_product.category}"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{``+grid_product.title}"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    app:layout_constraintTop_toBottomOf="@id/category"
+                    tools:text="@tools:sample/lorem" />
+
+                <RatingBar
+                    android:id="@+id/rate"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:progressTint="@color/yellow_500"
+                    android:rating="@{grid_product.rating.rate}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{``+grid_product.rating.count}"
+                    app:layout_constraintStart_toEndOf="@id/rate"
+                    app:layout_constraintTop_toTopOf="@id/rate"
+                    tools:text="231" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{grid_product.price + ` EGP`}"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rate"
+                    tools:text="123 EGP" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
